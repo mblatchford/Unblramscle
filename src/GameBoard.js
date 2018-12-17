@@ -38,15 +38,29 @@ class GameBoard extends Component {
       clicked: []
     }) 
       if(this.state.clicked[0] !== this.state.clicked[1]){
-        console.log('did I reach this point?')
+        // ID values of each clicked tile
         const clickedID1 =  this.state.clicked[0];
         const clickedID2 =  this.state.clicked[1];
+        // array of tiles by id
         const mapIndex = this.state.tiles.map(index => {
           return index.id 
         });
-    
+        // indicies in tiles[] of the clicked tile uuid
         const tileIndex1 = mapIndex.indexOf(clickedID1);
         const tileIndex2 = mapIndex.indexOf(clickedID2);
+
+        // perform swap
+        const newArray = [...this.state.tiles];
+        console.log(`pre ${newArray}`)
+        const temp = newArray[tileIndex1];
+        newArray[tileIndex1] = newArray[tileIndex2];
+        newArray[tileIndex2] = temp;
+        console.log(`post ${newArray}`)
+
+        this.setState({
+          tiles: newArray
+        })
+
       } //else do nothing if same button is clicked (effective reset)
   }
 
