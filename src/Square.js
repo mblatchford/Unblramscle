@@ -8,7 +8,11 @@ const Square = (props) => {
   return (
     <div className='tile_container'>
         {props.squares.map(tile => {
-          return <div className='tile'> {tile} </div>
+          return <div 
+              key = {tile}
+              className='tile' 
+              onClick={props.handleClick}
+              > {tile} </div>
          })
         }
     </div>
