@@ -21,29 +21,33 @@ class GameBoard extends Component {
   }
           
   _handleClicks = (tileID) => {
-    console.log('1')
-    console.log(`tile ${tileID} clicked`);
     this.setState({
-      //  clicked: this.state.clicked.concat(tileID)
        clicked: [...this.state.clicked, tileID]
     }, () => {
       const isPairClicked = this.state.clicked.length === 2;
-      console.log(isPairClicked);
       if(isPairClicked){
         this._swapTiles();
       }
-    })}
+    })
+  }
 
 
    _swapTiles = () => {
-    //  if second click is on the same tile reset clicked array
+    //  second click occured reset clicked array
     this.setState({ 
       clicked: []
-    })
-    if(this.state.clicked[0]=== this.state.clicked[1]){
-      console.log('they match');
-    }
-     
+    }) 
+      if(this.state.clicked[0] !== this.state.clicked[1]){
+        console.log('did I reach this point?')
+        const clickedID1 =  this.state.clicked[0];
+        const clickedID2 =  this.state.clicked[1];
+        const mapIndex = this.state.tiles.map(index => {
+          return index.id 
+        });
+    
+        const tileIndex1 = mapIndex.indexOf(clickedID1);
+        const tileIndex2 = mapIndex.indexOf(clickedID2);
+      } //else do nothing if same button is clicked (effective reset)
   }
 
   render() {
