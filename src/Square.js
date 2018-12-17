@@ -1,5 +1,5 @@
 import React from 'react';
-
+import uuid from 'uuid';
 // const style
 
 const Square = (props) => {
@@ -7,12 +7,12 @@ const Square = (props) => {
 
   return (
     <div className='tile_container'>
-        {props.squares.map(tile => {
+        {props.squares.map((tile) => {
           return <div 
-              key = {tile}
+              key = {uuid()}
               className='tile' 
-              onClick={props.handleClick}
-              > {tile} </div>
+              onClick={() => props.handleClick(tile.id)}
+              > {tile.value} </div>
          })
         }
     </div>
