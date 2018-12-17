@@ -12,3 +12,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.tile{
+  width: 70px;
+  height: 70px;
+  background-color: cornflowerblue;
+  font-size: 1.2em;
+  border: 2px solid black;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tile_container{
+  display: flex;
+}
