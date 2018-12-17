@@ -50,12 +50,13 @@ class GameBoard extends Component {
         const tileIndex2 = mapIndex.indexOf(clickedID2);
 
         // perform swap
+        // copy array
         const newArray = [...this.state.tiles];
-        console.log(`pre ${newArray}`)
+        // copy value to be overwritten
         const temp = newArray[tileIndex1];
+        // reassign values
         newArray[tileIndex1] = newArray[tileIndex2];
         newArray[tileIndex2] = temp;
-        console.log(`post ${newArray}`)
 
         this.setState({
           tiles: newArray
@@ -64,10 +65,20 @@ class GameBoard extends Component {
       } //else do nothing if same button is clicked (effective reset)
   }
 
-  render() {
-    // console.log(this.state.pairOfClicks);
-    console.log(this.state.clicked); 
-    
+  _randomizeTiles = () => {
+    const shuffledTiles = [...this.state.tiles];
+
+    for (let i = shuffledTiles.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledTiles[i], shuffledTiles[j]] = [shuffledTiles[j], shuffledTiles[i]];
+    }
+    this.setState({
+      tiles: shuffledTiles 
+    })
+
+  }
+
+  render() { 
 
     return (
       <div>
@@ -75,6 +86,7 @@ class GameBoard extends Component {
           handleClick = {this._handleClicks}
           squares={this.state.tiles}
         />
+       <button className='shuffle' onClick={() => this._randomizeTiles()}>Shuffle Tiles</button> 
       </div>
     );
   }
