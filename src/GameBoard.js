@@ -29,9 +29,10 @@ class GameBoard extends Component {
 
   // makes copy of array before any shuffling one time after initial render
   componentDidMount(){
-    this.setState({
-      ordered: [...this.state.shuffled] 
-    })
+    this._howManytoRender()
+    // this.setState({
+    //   ordered: [...this.state.shuffled] 
+    // })
   }
 
            
@@ -117,14 +118,22 @@ class GameBoard extends Component {
     if(gridDirection === 'inc'){
       this.setState({
         grid: curGridSize + 1 
-      }, () => console.log(this.state.grid), this._howManytoRender())
+      }, () => {
+        console.log(`inc ${this.state.grid}`);
+        this._howManytoRender()
+      })
+
     }else if(gridDirection === 'dec'){
       this.setState({
         grid: curGridSize - 1 
-      }, () => console.log(this.state.grid), this._howManytoRender())
+      }, () => 
+        {console.log(`dec ${this.state.grid}`); 
+        this._howManytoRender()
+      })
     }
 
   }
+  
 
   _howManytoRender = () => {
     const grid = this.state.grid;
@@ -136,8 +145,8 @@ class GameBoard extends Component {
     this.setState({
       shuffled: newArray 
     })
-    
   }
+  
 
   render() { 
 
@@ -145,7 +154,9 @@ class GameBoard extends Component {
       <div>
         <InitGame 
           size = {this._gridSize}
-          
+          // size1 = {this._gridSize1}
+          // size2 = {this._gridSize2}
+          gridSize = {this.state.grid}
         />
         <Square  
           handleClick = {this._handleClicks}
