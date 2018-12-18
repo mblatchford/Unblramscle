@@ -5,7 +5,10 @@ import uuid from 'uuid';
 class GameBoard extends Component {
   constructor(props) {
     super(props);
+
+
     this.state={
+      // shuffled: [], 
       shuffled: [{'value':1,id:uuid()},
               {'value':2,id:uuid()},
               {'value':3,id:uuid()},
@@ -85,19 +88,11 @@ class GameBoard extends Component {
     const comparison = this.state.shuffled.map(object => {
       return object.id; 
     });
-    
-      // game keeps going
-    let i = 0; 
-    let equal = true;
-    debugger;
-     while( equal === true && i < masterIndex.length){
-       if (comparison[i] === masterIndex[i]){
-        i++;
-      }else{
-        equal = false;
-      }
+
+    if (JSON.stringify(comparison) === JSON.stringify(masterIndex)) {
+      console.log('Winner');
     }
-    if(equal) return console.log('winner');    
+   
   }
 
 
