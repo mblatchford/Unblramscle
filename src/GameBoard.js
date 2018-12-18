@@ -11,32 +11,20 @@ class GameBoard extends Component {
 
     this.state={
       shuffled: [1], 
-      // shuffled: [{'value':1,id:uuid()},
-      //         {'value':2,id:uuid()},
-      //         {'value':3,id:uuid()},
-              // {'value':4,id:uuid()},
-              // {'value':5,id:uuid()},
-              // {'value':6,id:uuid()},
-              // {'value':7,id:uuid()},
-              // {'value':8,id:uuid()},
-              // {'value':9,id:uuid()},
-            // ], 
       ordered: [],           
       clicked: [],
-      grid: 2
+      grid: 2,
+      start: false,
     } 
   }
 
   // makes copy of array before any shuffling one time after initial render
   componentDidMount(){
     this._howManytoRender()
-    // this.setState({
-    //   ordered: [...this.state.shuffled] 
-    // })
   }
 
            
-  _handleClicks = (tileID) => {
+  _handleTileClicks = (tileID) => {
     this.setState({
        clicked: [...this.state.clicked, tileID]
     }, () => {
@@ -147,19 +135,29 @@ class GameBoard extends Component {
     })
   }
   
+  _gameStart = () => {
+    this.setState({
+      start: true, 
+      ordered: this.state.shuffled,
+    }, () => this._randomizeTiles())
+    console.log("start pressed")
+  }
+
+
 
   render() { 
 
     return (
       <div>
         <InitGame 
-          size = {this._gridSize}
-          // size1 = {this._gridSize1}
-          // size2 = {this._gridSize2}
+          // passing method, chain will render num tiles required
+          size = {this._gridSize} 
+          // passing current grid: value
           gridSize = {this.state.grid}
+          start = {this._gameStart}
         />
         <Square  
-          handleClick = {this._handleClicks}
+          handleClick = {this._handleTileClicks}
           squares={this.state.shuffled}
         />
        {/* <button className='shuffle' onClick={() => this._randomizeTiles()}>Shuffle Tiles</button>  */}
