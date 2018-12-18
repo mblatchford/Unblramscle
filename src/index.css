@@ -29,7 +29,7 @@ code {
 
 
 .board{
- 
+
 }
 
 .tile_container_x2{
@@ -59,8 +59,17 @@ code {
 }
 
 /* default tile */
-.tile{
+/* .tile{
   background-color: cornflowerblue;
+  font-size: 1.2em;
+  border: 1px solid black;
+  margin: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+.tile{
+  background-image: url('http://source.unsplash.com/random/800x600');
   font-size: 1.2em;
   border: 1px solid black;
   margin: 0px;

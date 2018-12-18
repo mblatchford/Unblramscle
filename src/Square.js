@@ -1,6 +1,5 @@
 import React from 'react';
 import uuid from 'uuid';
-// const style
 
 const Square = (props) => {
   

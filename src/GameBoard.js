@@ -127,14 +127,36 @@ class GameBoard extends Component {
     const grid = this.state.grid;
     const gridSize = grid * grid;
     const newArray = [];
+
+
     for(let i = 0; i < gridSize; i++){
-      newArray.push({'value':i+1, 'id': uuid()});
+      newArray.push({'value':i+1, 'id': uuid(), 'backgroundPos': "x, y"});
     }
     this.setState({
       shuffled: newArray 
     })
   }
   
+  _backgroundPos = () => {
+    // grid tells me how many tiles in a given col||row
+    const grid = this.state.grid;
+    // actual upperleft img position coordinates
+    const xLength = 800/grid;
+    const ylength = 600/grid;
+    let x = 0;
+    let y = 0;
+    const backgroundPosArray = [];
+      for(let i = 0; i <= 800; i = i + xLength){
+          x = i;
+        for(let j = 0; j <= 600;  j = j - ylength){
+          y = j;
+          backgroundPosArray.push(x,y)
+        }
+      }
+      console.log(backgroundPosArray);
+      return backgroundPosArray;
+  }
+
   _gameStart = () => {
     this.setState({
       start: true, 
