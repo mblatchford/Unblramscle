@@ -9,12 +9,12 @@ class GameBoard extends Component {
       shuffled: [{'value':1,id:uuid()},
               {'value':2,id:uuid()},
               {'value':3,id:uuid()},
-              {'value':4,id:uuid()},
-              {'value':5,id:uuid()},
-              {'value':6,id:uuid()},
-              {'value':7,id:uuid()},
-              {'value':8,id:uuid()},
-              {'value':9,id:uuid()},
+              // {'value':4,id:uuid()},
+              // {'value':5,id:uuid()},
+              // {'value':6,id:uuid()},
+              // {'value':7,id:uuid()},
+              // {'value':8,id:uuid()},
+              // {'value':9,id:uuid()},
             ], 
       ordered: [],           
       clicked: [],
@@ -69,10 +69,37 @@ class GameBoard extends Component {
 
         this.setState({
           shuffled: newArray
-        })
+        }, () =>  this._ifHasWon() )
 
+     
+        
       } //else do nothing if same button is clicked (effective reset)
   }
+
+
+  _ifHasWon = () => {
+    // map each to compare arrays of id's
+    const masterIndex = this.state.ordered.map(object => {
+      return object.id; 
+    });
+    const comparison = this.state.shuffled.map(object => {
+      return object.id; 
+    });
+    
+      // game keeps going
+    let i = 0; 
+    let equal = true;
+    debugger;
+     while( equal === true && i < masterIndex.length){
+       if (comparison[i] === masterIndex[i]){
+        i++;
+      }else{
+        equal = false;
+      }
+    }
+    if(equal) return console.log('winner');    
+  }
+
 
   _randomizeTiles = () => {
     const shuffledTiles = [...this.state.shuffled];
