@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Square from  './Square';
+import InitGame from './InitGame';
 import uuid from 'uuid';
+
 
 class GameBoard extends Component {
   constructor(props) {
@@ -8,19 +10,20 @@ class GameBoard extends Component {
 
 
     this.state={
-      // shuffled: [], 
-      shuffled: [{'value':1,id:uuid()},
-              {'value':2,id:uuid()},
-              {'value':3,id:uuid()},
+      shuffled: [1], 
+      // shuffled: [{'value':1,id:uuid()},
+      //         {'value':2,id:uuid()},
+      //         {'value':3,id:uuid()},
               // {'value':4,id:uuid()},
               // {'value':5,id:uuid()},
               // {'value':6,id:uuid()},
               // {'value':7,id:uuid()},
               // {'value':8,id:uuid()},
               // {'value':9,id:uuid()},
-            ], 
+            // ], 
       ordered: [],           
       clicked: [],
+      grid: 2
     } 
   }
 
@@ -109,15 +112,47 @@ class GameBoard extends Component {
 
   }
 
+  _gridSize = (gridDirection) => {
+    const curGridSize= this.state.grid;
+    if(gridDirection === 'inc'){
+      this.setState({
+        grid: curGridSize + 1 
+      }, () => console.log(this.state.grid), this._howManytoRender())
+    }else if(gridDirection === 'dec'){
+      this.setState({
+        grid: curGridSize - 1 
+      }, () => console.log(this.state.grid), this._howManytoRender())
+    }
+
+  }
+
+  _howManytoRender = () => {
+    const grid = this.state.grid;
+    const gridSize = grid * grid;
+    const newArray = [];
+    for(let i = 0; i < gridSize; i++){
+      newArray.push({'value':i+1, 'id': uuid()});
+    }
+    this.setState({
+      shuffled: newArray 
+    })
+    
+  }
+
   render() { 
 
     return (
       <div>
+        <InitGame 
+          size = {this._gridSize}
+          
+        />
         <Square  
           handleClick = {this._handleClicks}
           squares={this.state.shuffled}
         />
-       <button className='shuffle' onClick={() => this._randomizeTiles()}>Shuffle Tiles</button> 
+       {/* <button className='shuffle' onClick={() => this._randomizeTiles()}>Shuffle Tiles</button>  */}
+      
       </div>
     );
   }
