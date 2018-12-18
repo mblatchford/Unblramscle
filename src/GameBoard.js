@@ -156,7 +156,7 @@ class GameBoard extends Component {
   render() { 
 
     return (
-      <div>
+      <div className="board">
         <InitGame 
           // passing method, chain will render num tiles required
           size = {this._gridSize} 
@@ -167,10 +167,10 @@ class GameBoard extends Component {
           reset = {this._resetGame}
         />
         <Square  
+          gridSize = {this.state.grid}
           handleClick = {this._handleTileClicks}
           squares={this.state.shuffled}
         />
-       {/* <button className='shuffle' onClick={() => this._randomizeTiles()}>Shuffle Tiles</button>  */}
       
       </div>
     );
