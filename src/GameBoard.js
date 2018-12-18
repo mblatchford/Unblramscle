@@ -140,9 +140,17 @@ class GameBoard extends Component {
       start: true, 
       ordered: this.state.shuffled,
     }, () => this._randomizeTiles())
-    console.log("start pressed")
   }
 
+  _resetGame = () => {
+    this.setState({
+      shuffled: [1], 
+      ordered: [],           
+      clicked: [],
+      grid: 2,
+      start: false,
+    }, () => this._howManytoRender())
+  }
 
 
   render() { 
@@ -154,7 +162,9 @@ class GameBoard extends Component {
           size = {this._gridSize} 
           // passing current grid: value
           gridSize = {this.state.grid}
-          start = {this._gameStart}
+          startButton = {this._gameStart}
+          startBool = {this.state.start}
+          reset = {this._resetGame}
         />
         <Square  
           handleClick = {this._handleTileClicks}
