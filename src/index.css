@@ -28,34 +28,43 @@ code {
 
 
 
-.board{
-
-}
 
 .tile_container_x2{
   display:grid;
-  grid-template-columns: repeat(2, 400px);
   grid-template-rows: repeat(2, 300px);
+  grid-template-columns: repeat(2, 400px);
+  box-shadow: 10px 10px 5px grey;
+
+  
 }
 .tile_container_x3{
   display:grid;
+  /* grid-gap: 3px; */
   grid-template-columns: repeat(3, 265px);
   grid-template-rows: repeat(3, 200px);
+  box-shadow: 10px 10px 5px grey;
+
 }
 .tile_container_x4{
   display:grid;
   grid-template-columns: repeat(4, 200px);
   grid-template-rows: repeat(4, 150px);
+  box-shadow: 10px 10px 5px grey;
+
 }
 .tile_container_x5{
   display:grid;
   grid-template-columns: repeat(5, 160px);
   grid-template-rows: repeat(5, 120px);
+  box-shadow: 10px 10px 5px grey;
+
 }
 .tile_container_x6{
   display:grid;
   grid-template-columns: repeat(6, 133px);
   grid-template-rows: repeat(6, 100px);
+  box-shadow: 10px 10px 5px grey;
+
 }
 
 /* default tile */
@@ -69,7 +78,8 @@ code {
   justify-content: center;
 } */
 .tile{
-  background-image: url('http://source.unsplash.com/random/800x600');
+  background-image: url('https://images.unsplash.com/photo-1544469438-9994373fc802?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&h=600&fit=crop&ixid=eyJhcHBfaWQiOjF9');
+  /* background-image: url('http://source.unsplash.com/random/800x600'); */
   font-size: 1.2em;
   border: 1px solid black;
   margin: 0px;
@@ -101,5 +111,48 @@ code {
 }
 
 
+/* #tilePos0{
+  background-position-x: 0px ;
+  background-position-y: 0px ;
+}
+#tilePos1{
+  background-position-x: -265px ;
+  background-position-y: 0px ;  
 
-/*  */
+}
+#tilePos2{
+  background-position-x: -530px ;
+  background-position-y: 0px ;  
+
+}
+#tilePos3{
+  background-position-x: 0px ;
+  background-position-y: -200px ;  
+
+}
+#tilePos4{
+  background-position-x: -265px ;
+  background-position-y: -200px ;  
+
+}
+#tilePos5{
+  background-position-x: -530px ;
+  background-position-y: -200px ;  
+
+}
+#tilePos6{
+  background-position-x: 0px ;
+  background-position-y: -400px ;  
+
+}
+#tilePos7{
+  background-position-x: -265px ;
+  background-position-y: -400px ;  
+
+}
+#tilePos8{
+  background-position-x: -530px ;
+  background-position-y: -400px ;  
+} */
+
+

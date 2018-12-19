@@ -10,7 +10,7 @@ class GameBoard extends Component {
 
 
     this.state={
-      shuffled: [1], 
+      shuffled: [], 
       ordered: [],           
       clicked: [],
       grid: 2,
@@ -107,7 +107,7 @@ class GameBoard extends Component {
       this.setState({
         grid: curGridSize + 1 
       }, () => {
-        console.log(`inc ${this.state.grid}`);
+        // console.log(`inc ${this.state.grid}`);
         this._howManytoRender()
       })
 
@@ -115,7 +115,8 @@ class GameBoard extends Component {
       this.setState({
         grid: curGridSize - 1 
       }, () => 
-        {console.log(`dec ${this.state.grid}`); 
+        {
+        // console.log(`dec ${this.state.grid}`); 
         this._howManytoRender()
       })
     }
@@ -127,13 +128,17 @@ class GameBoard extends Component {
     const grid = this.state.grid;
     const gridSize = grid * grid;
     const newArray = [];
-
-
+    const arrayPos = this._backgroundPos();
     for(let i = 0; i < gridSize; i++){
-      newArray.push({'value':i+1, 'id': uuid(), 'backgroundPos': "x, y"});
+      let pos = arrayPos[i];
+      // console.log(`pos ${pos.xPos}`)
+      // let pos2 = Object.values(arrayPos[i]);
+      // console.log(`pos2 ${pos2}`);
+      newArray.push({'value':i+1, 'id': uuid(), 'backgroundPos': arrayPos[i]
+      });
     }
     this.setState({
-      shuffled: newArray 
+      shuffled: newArray  
     })
   }
   
@@ -142,18 +147,20 @@ class GameBoard extends Component {
     const grid = this.state.grid;
     // actual upperleft img position coordinates
     const xLength = 800/grid;
-    const ylength = 600/grid;
-    let x = 0;
-    let y = 0;
+    const yLength = 600/grid;
+    let x = 800;
+    let y = 600;
     const backgroundPosArray = [];
-      for(let i = 0; i <= 800; i = i + xLength){
-          x = i;
-        for(let j = 0; j <= 600;  j = j - ylength){
-          y = j;
-          backgroundPosArray.push(x,y)
+    // x & y reversed in nested loops to allow for row precedence instead of filling by column first
+      for(let i = 0; i >= -(yLength*(grid-1)); i= i-yLength){
+          y = i
+        for(let j = 0; j >= -(xLength*(grid-1));  j= j-xLength){
+         x = j
+          backgroundPosArray.push({xPos: x, yPos: y})   
         }
       }
-      console.log(backgroundPosArray);
+      console.log("imagePositions")
+      console.table(backgroundPosArray);
       return backgroundPosArray;
   }
 
@@ -178,7 +185,8 @@ class GameBoard extends Component {
   render() { 
 
     return (
-      <div className="board">
+      <div className="board_container">
+      <div className="interface">
         <InitGame 
           // passing method, chain will render num tiles required
           size = {this._gridSize} 
@@ -188,11 +196,14 @@ class GameBoard extends Component {
           startBool = {this.state.start}
           reset = {this._resetGame}
         />
-        <Square  
-          gridSize = {this.state.grid}
-          handleClick = {this._handleTileClicks}
-          squares={this.state.shuffled}
-        />
+        </div>
+        <div className="board">
+          <Square  
+            gridSize = {this.state.grid}
+            handleClick = {this._handleTileClicks}
+            squares={this.state.shuffled}
+          />
+        </div>
       
       </div>
     );

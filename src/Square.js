@@ -22,15 +22,22 @@ const Square = (props) => {
       break;
   }
 
-
   return (
     <div className={tileClass}>
         {props.squares.map((tile) => {
+          const checkBackPosX = tile.backgroundPos && tile.backgroundPos.xPos ? tile.backgroundPos.xPos : 0;
+          const checkBackPosY = tile.backgroundPos && tile.backgroundPos.yPos ? tile.backgroundPos.yPos : 0;
           return <div 
-              key = {uuid()}
-              className={`tile + ${tileClass}`}
-              onClick={() => props.handleClick(tile.id)}
-              > {tile.value} </div>
+            key = {uuid()}
+            id = {`tilePos${tile.value-1}`}
+            style = {{
+              backgroundPositionX: checkBackPosX + `px`,
+              backgroundPositionY: checkBackPosY + `px`,          
+            }}  
+            className={`tile ${tileClass} `}
+            onClick={() => props.handleClick(tile.id)}
+          > 
+          </div>
          })
         }
     </div>
