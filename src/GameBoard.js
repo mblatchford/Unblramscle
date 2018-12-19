@@ -83,10 +83,13 @@ class GameBoard extends Component {
 
 		if (JSON.stringify(comparison) === JSON.stringify(masterIndex)) {
 			console.log('Winner');
+			
+			// hacky reset button
 			window.location.reload(); 
 		}
 	 
 	}
+
 
 
 	_randomizeTiles = () => {
@@ -178,6 +181,7 @@ class GameBoard extends Component {
 		}, () => this._howManytoRender())
 	}
 
+	// hacky fix just reloads the page to refresh image
 	_newImageHandler = () => {
 		window.location.reload(); 
 	}
@@ -186,7 +190,9 @@ class GameBoard extends Component {
 
 		return (
 			<div className="wrapper">
-				
+				<h1>
+					Un<div className="juxtapose">bl</div>ra<div className="juxtapose">sc</div>le
+				</h1>
 				<div className="interface">
 					<InitGame 
 						// passing method, chain will render num tiles required
@@ -201,6 +207,14 @@ class GameBoard extends Component {
 					<div className="picture">
           	<Picture />
         	</div>
+					<div className="winner">Y
+							<div className="juxtapose">o</div>
+							u 
+					</div>
+					<div className="winner">
+							<div className="juxtapose">W</div>i
+							<div className="juxtapose">n</div>!
+					</div>
 				</div>
 				<div className="board_container">
 					<Square  
