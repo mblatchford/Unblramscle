@@ -46,7 +46,7 @@ html, body {
   justify-self: center;
 }
 
-.winner{
+.winner {
   padding-top:40px;
   font-size: 120px;
   font-family: 'Gaegu', cursive;
@@ -57,6 +57,7 @@ html, body {
   line-height: 80px;
   color: dimgrey;
 }
+
 
 
 .board_container{

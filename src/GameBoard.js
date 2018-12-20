@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
+import uuid from 'uuid';
+
 import Square from  './Square';
 import InitGame from './InitGame';
 import Picture from './Picture';
-import uuid from 'uuid';
+import Winner from './Winner';
 
 class GameBoard extends Component {
 	constructor(props) {
 		super(props);
-
-
 		this.state={
 			shuffled: [], 
 			ordered: [],           
 			clicked: [],
 			grid: 2,
 			start: false,
+			winner: false,
 		} 
 	}
 
@@ -83,9 +84,11 @@ class GameBoard extends Component {
 
 		if (JSON.stringify(comparison) === JSON.stringify(masterIndex)) {
 			console.log('Winner');
-			
+			this.setState({
+				winner: true
+			})
 			// hacky reset button
-			window.location.reload(); 
+			// window.location.reload(); 
 		}
 	 
 	}
@@ -206,17 +209,10 @@ class GameBoard extends Component {
 					/>
 					<div className="picture">
           	<Picture />
-        	</div>
-					<div className="winner">Y
-							<div className="juxtapose">o</div>
-							u 
-					</div>
-					<div className="winner">
-							<div className="juxtapose">W</div>i
-							<div className="juxtapose">n</div>!
+						<Winner ifWinner = {this.state.winner} />
 					</div>
 				</div>
-				<div className="board_container">
+					<div className="board_container">
 					<Square  
 						gridSize = {this.state.grid}
 						handleClick = {this._handleTileClicks}
@@ -224,7 +220,8 @@ class GameBoard extends Component {
 					/>
 				</div>
 				
-			</div>
+		</div>
+
 		);
 	}
 }
