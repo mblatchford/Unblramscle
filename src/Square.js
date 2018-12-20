@@ -25,22 +25,22 @@ const Square = (props) => {
   // Map through array of tiles making sure it pulls only data actually in a finished setState
   // Injects tile specific background image position data into CSS
   // Adds click handler to each tile
-  console.log(`clicked length ${props.clicked.length}`)
+
   return (
     <div className={tileClass}>
 
         {props.squares.map((tile) => {
           const checkBackPosX = tile.backgroundPos && tile.backgroundPos.xPos ? tile.backgroundPos.xPos : 0;
           const checkBackPosY = tile.backgroundPos && tile.backgroundPos.yPos ? tile.backgroundPos.yPos : 0;
-          // const transparent = props.clicked.length === 1 ? '.8' : '.0' ;
-
+          const clicked = props.clicked[0];
+          const isClicked = clicked === tile.id ? `6px solid red` : 'none'
           return <div 
             key = {uuid()}
             id = {`tilePos${tile.value-1}`}
             style = {{
               backgroundPositionX: checkBackPosX + `px`,
               backgroundPositionY: checkBackPosY + `px`,
-              // border:`4px solid rgba(0, 191, 255, ${transparent})`,
+              outline: isClicked,
             }}  
             className={`tile ${tileClass} `}
             onClick={() => props.handleClick(tile.id)}
