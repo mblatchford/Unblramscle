@@ -88,7 +88,8 @@ class GameBoard extends Component {
 				winner: true
 			})
 			// hacky reset button
-			// window.location.reload(); 
+			setTimeout(function(){ 	window.location.reload(); }, 3000);
+		 
 		}
 	 
 	}
@@ -181,6 +182,7 @@ class GameBoard extends Component {
 			clicked: [],
 			grid: 2,
 			start: false,
+			winner: false,
 		}, () => this._howManytoRender())
 	}
 
