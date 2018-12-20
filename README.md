@@ -1,3 +1,10 @@
+## Unscramble
+
+This 3-day project was a dive into React.js. Built as a clone of a basic unscramble puzzle, this app gave me a better foundation into how React works and why it's powerful.
+
+A front-end project only, there are no database dependencies rather I polled [Unsplash](https://source.unsplash.com/) for a random image restricted to 800x600 dimensions. There were some interesting hurdles when it came to defining the math and css sprites required to correctly show each portion of the background on a given tile but I worked them out. A CSS alchemist I'm not, postitioning the elements is still an aggravating excercise and this is in no way a responsive site. 
+
+-------------------------------------------------------------------------------------------------------------------------------
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
