@@ -25,6 +25,7 @@ const Square = (props) => {
   // Map through array of tiles making sure it pulls only data actually in a finished setState
   // Injects tile specific background image position data into CSS
   // Adds click handler to each tile
+  // Highlights the first clicked tile in a swap
 
   return (
     <div className={tileClass}>
